@@ -1,0 +1,22 @@
+{
+    "autoload": {
+        "psr-4": {
+            "api\\": "bfunc/api",
+            "app\\": "bfunc/app",
+            "core\\": "bfunc/core"
+        },
+        "files": [
+            "config.php"
+        ]
+    },
+    "scripts": {
+        "serve": "@php -S 0.0.0.0:8080 -t public/ public/index.php",
+        "browser": "npx browser-sync start --proxy localhost:8080 --files \"public/\" \"bfunc\" \"src\"",
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -k \"composer run serve\" \"composer run browser\""
+        ],
+        "bfunc": "npx browser-sync start --proxy bfunc.test --files \"public/\" \"bfunc\" \"src\""
+    },
+    "require": {}
+}
